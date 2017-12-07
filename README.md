@@ -1,4 +1,4 @@
-# Title: Monte Carlo Sumulation in Stock Market Analysis
+# Title: Monte Carlo Simulation in Stock Market Analysis
 
 ## Team Member(s):
 Gopikrishnan Pararath Radhakrishnan, Shivank Mishra, Hemanth Prabhakar
