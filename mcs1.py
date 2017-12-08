@@ -15,6 +15,26 @@ class VanillaOption:
         self.interest_rate = interest_rate
         self.number_of_paths = number_of_paths
 
+    def monte_carlo_pricer(self):
+        variance = self.volatility * self.volatility * self.expiry
+        standard_deviation = math.sqrt(variance)
+        ito_correction = -0.5 * variance
+        spot_changed = self.spot * math.exp(self.interest_rate * self.expiry + ito_correction)
+        sum = 0
+        stock_list = []
+        for i in range(0, self.number_of_paths):
+            normal = random.normalvariate(0, 1)
+            stock_val = spot_changed * math.exp(standard_deviation * normal)
+            stock_list.append(stock_val)
+            # if self.option_type.lower() == 'call':
+            sum += max(stock_val - self.strike, 0.0)
+            # elif self.option_type.lower() == 'put':
+            #   sum += max(self.strike - stock_val, 0.0)
+        result = sum / self.number_of_paths
+        plot = plt.plot(stock_list)
+        plt.show(plot)
+        result *= math.exp(-self.interest_rate * self.expiry)
+        return result
 
     def black_scholes(self):
         d_1 = math.log(self.spot / self.strike) + ((self.interest_rate + (self.volatility * self.volatility)/2) *
