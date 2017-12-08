@@ -26,10 +26,7 @@ class VanillaOption:
             normal = random.normalvariate(0, 1)
             stock_val = spot_changed * math.exp(standard_deviation * normal)
             stock_list.append(stock_val)
-            # if self.option_type.lower() == 'call':
             sum += max(stock_val - self.strike, 0.0)
-            # elif self.option_type.lower() == 'put':
-            #   sum += max(self.strike - stock_val, 0.0)
         result = sum / self.number_of_paths
         plot = plt.plot(stock_list)
         plt.show(plot)
