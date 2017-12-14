@@ -1,3 +1,12 @@
+"""
+Parameters
+variance: square of the standared deviation from the mean 
+expiry: The period of contract
+strike: price at which the stocks can be sold or bought (at expiry)
+spot: The current market price when the stock is bought or sold
+interst rate: Interst charged per year
+number_of_paths: Number of simulted paths
+"""
 import client
 import random
 import math
@@ -18,6 +27,12 @@ class VanillaOption:
         self.interest_rate = interest_rate
         self.number_of_paths = number_of_paths
 
+"""
+Monte carlo method is unique compared to the other pricing techniques because they generate future assset prices. 
+The function plots the stock_list after iterating through the number of paths by using the formula for calculating the stock value.
+It also returns the exponenent of the product of interest_rate and expiry with the math module.
+"""
+
     def monte_carlo_pricer(self):
         variance = self.volatility * self.volatility * self.expiry
         standard_deviation = math.sqrt(variance)
@@ -33,8 +48,14 @@ class VanillaOption:
         result = sum / self.number_of_paths
         plot = plt.plot(stock_list)
         plt.show(plot)
+        plt.title('Simulations of Stock Price)
+        plt.ylabel('Stock Price')
         result *= math.exp(-self.interest_rate * self.expiry)
         return result
+"""
+The model assumes the price of heavily traded assets follows a geometric Brownian motion with constant volatility.
+The Black Scholes call option formula is calculated by multiplying the stock price by the cumulative standard normal probability distribution function.
+"""
 
     def black_scholes(self):
         d_1 = math.log(self.spot / self.strike) + ((self.interest_rate + (self.volatility * self.volatility)/2) *
@@ -43,3 +64,14 @@ class VanillaOption:
        # if self.option_type.lower() == 'call':
         result = self.spot * norm.cdf(d_1) - self.strike * math.exp(-self.interest_rate * self.expiry) * norm.cdf(d_2)
         return result
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
