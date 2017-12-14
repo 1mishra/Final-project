@@ -3,11 +3,13 @@ Parameters
 variance: square of the standared deviation from the mean 
 expiry: The period of contract
 volatlity: The fluctuation of stock price
+mean: mean of the stock price
 strike: price at which the stocks can be sold or bought (at expiry)
 spot: The current market price when the stock is bought or sold
 interst rate: Interst charged per year
 number_of_paths: Number of simulted paths
 """
+
 import client
 import random
 import math
@@ -15,6 +17,8 @@ from numpy import zeros
 from scipy.stats import norm
 from six.moves import input
 import matplotlib.pyplot as plt
+import matlab.engine
+eng = matlab.engine.start_matlab()
 
 client.main()
 # print("Executing MCS in {} ".format(__name__))
@@ -24,6 +28,7 @@ class VanillaOption:
         self.expiry = expiry
         self.strike = strike
         self.spot = spot
+        self.mean = mean
         self.volatility = volatility
         self.interest_rate = interest_rate
         self.number_of_paths = number_of_paths
@@ -66,7 +71,19 @@ The Black Scholes call option formula is calculated by multiplying the stock pri
         result = self.spot * norm.cdf(d_1) - self.strike * math.exp(-self.interest_rate * self.expiry) * norm.cdf(d_2)
         return result
     
-        
+""" 
+Calculating the put_price and call_price values using the matlab module and the assetpaths function
+"""
+                  
+     def Price_calculation:
+                  standard_deviation = self.variance ** (0.5)
+                  time_steps = 1/365
+                  Asset_path = eng.AssetPaths(self.spot, self.mean, standard_deviation, self.expiry, self.number_of_paths);
+                  put_pay = max(self.spot - mean(Asset_path))
+                  call_pay = max(mean(Asset_path-self.spot,0)
+                  putPrice = mean(PutPayoffT)*exp(-r*T)
+                  callPrice = mean(CallPayoffT)*exp(-r*T)   
+                  
     
     
     
