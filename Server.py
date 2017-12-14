@@ -2,6 +2,7 @@
 Parameters
 variance: square of the standared deviation from the mean 
 expiry: The period of contract
+volatlity: The fluctuation of stock price
 strike: price at which the stocks can be sold or bought (at expiry)
 spot: The current market price when the stock is bought or sold
 interst rate: Interst charged per year
