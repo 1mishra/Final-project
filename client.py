@@ -7,7 +7,7 @@ def main():
     spot = float(input("Enter the spot value of the option (Stock price currently): "))
     volatility = float(input("Enter the volatility value of the option as a rate: ")) / 100
     interest_rate = float(input("Enter the risk free interest rate as a rate: ")) / 100
-    mean = float(input("Enter the mean value: ")
+    mean = float(input("Enter the mean value: "))
     number_of_paths = int(input("Enter the number of paths you want to run the simulation for: "))
     call = VanillaOption(expiry, strike, spot, volatility, interest_rate, number_of_paths)
     print("Monte Carlo Result: ", call.monte_carlo_pricer())

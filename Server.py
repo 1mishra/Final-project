@@ -33,12 +33,11 @@ class VanillaOption:
         self.interest_rate = interest_rate
         self.number_of_paths = number_of_paths
 
-"""
-Monte carlo method is unique compared to the other pricing techniques because they generate future assset prices. 
-The function plots the stock_list after iterating through the number of paths by using the formula for calculating the stock value.
-It also returns the exponenent of the product of interest_rate and expiry with the math module.
-"""
-
+    """
+    Monte carlo method is unique compared to the other pricing techniques because they generate future assset prices. 
+    The function plots the stock_list after iterating through the number of paths by using the formula for calculating the stock value.
+    It also returns the exponent of the product of interest_rate and expiry with the math module.
+    """
     def monte_carlo_pricer(self):
         variance = self.volatility * self.volatility * self.expiry
         standard_deviation = math.sqrt(variance)
@@ -54,15 +53,15 @@ It also returns the exponenent of the product of interest_rate and expiry with t
         result = sum / self.number_of_paths
         plot = plt.plot(stock_list)
         plt.show(plot)
-        plt.title('Simulations of Stock Price)
+        plt.title('Simulations of Stock Price')
         plt.ylabel('Stock Price')
         result *= math.exp(-self.interest_rate * self.expiry)
         return result
-"""
-The model assumes the price of heavily traded assets follows a geometric Brownian motion with constant volatility.
-The Black Scholes call option formula is calculated by multiplying the stock price by the cumulative standard normal probability distribution function.
-"""
 
+    """
+    The model assumes the price of heavily traded assets follows a geometric Brownian motion with constant volatility.
+    The Black Scholes call option formula is calculated by multiplying the stock price by the cumulative standard normal probability distribution function.
+    """
     def black_scholes(self):
         d_1 = math.log(self.spot / self.strike) + ((self.interest_rate + (self.volatility * self.volatility)/2) *
                 self.expiry)
@@ -70,26 +69,25 @@ The Black Scholes call option formula is calculated by multiplying the stock pri
        # if self.option_type.lower() == 'call':
         result = self.spot * norm.cdf(d_1) - self.strike * math.exp(-self.interest_rate * self.expiry) * norm.cdf(d_2)
         return result
-    
-""" 
-Calculating the put_price and call_price values using the matlab module and the assetpaths function
-"""
-                  
-     def Price_calculation:
-          standard_deviation = self.variance ** (0.5)
-          time_steps = 1/365
-          Asset_path = eng.AssetPaths(self.spot, self.mean, standard_deviation, self.expiry, self.number_of_paths);
-          option = input("Mention your choice (call or put) : ")
-          if option == "call"
+
+    """ 
+    Calculating the put_price and call_price values using the matlab module and the assetpaths function
+    """
+    def Price_calculation(self):
+        standard_deviation = self.variance ** (0.5)
+        time_steps = 1/365
+        Asset_path = eng.AssetPaths(self.spot, self.mean, standard_deviation, self.expiry, self.number_of_paths);
+        option = input("Mention your choice (call or put) : ")
+        if option == "call":
             call_pay = max(mean(Asset_path-self.spot,0)
             callPrice = mean(call_pay)*exp(-self.interest_rate * self.expiry)
             return callPrice
-          else
+        else:
              put_pay = max(self.spot - mean(Asset_path))
              putPrice = mean(put_pay)*exp(-self.interest_rate * self.expiry)
              return putPrice
-              
-                     
+
+
                   
     
     

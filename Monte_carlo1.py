@@ -9,7 +9,7 @@ import locale
 locale.setlocale(locale.LC_ALL, '')
 
 """
-pv : preseent value
+pv : present value
 time_horizon: The specified time horizon in years
 i : rate of return
 additions : Annual addition
