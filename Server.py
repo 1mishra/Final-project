@@ -80,11 +80,11 @@ class VanillaOption:
         option = input("Mention your choice (call or put) : ")
         if option == "call":
             call_pay = max(mean(Asset_path-self.spot,0)
-            callPrice = mean(call_pay)*exp(-self.interest_rate * self.expiry)
+            callPrice = mean(call_pay)*math.exp(-self.interest_rate * self.expiry)
             return callPrice
         else:
              put_pay = max(self.spot - mean(Asset_path))
-             putPrice = mean(put_pay)*exp(-self.interest_rate * self.expiry)
+             putPrice = mean(put_pay)*math.exp(-self.interest_rate * self.expiry)
              return putPrice
 
 
