@@ -28,7 +28,13 @@ class Server:
         self.rate = rate
         self.mc_paths = mc_paths
 
-
+    def display(self):
+        print("expiry                   :  ",self.expiry)
+        print("Strike price             :  ",self.strike)
+        print("Spot value               :  ",self.spot)
+        print("Volatility               :  ",self.vol)
+        print("Rate of interest         :  ",self.rate)
+        print("Number of iterations     :  ",self.mc_paths)
 
     def monte_carlo_pricer(self):
         """
