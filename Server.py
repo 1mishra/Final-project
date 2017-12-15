@@ -76,13 +76,17 @@ Calculating the put_price and call_price values using the matlab module and the 
 """
                   
      def Price_calculation:
-                  standard_deviation = self.variance ** (0.5)
-                  time_steps = 1/365
-                  Asset_path = eng.AssetPaths(self.spot, self.mean, standard_deviation, self.expiry, self.number_of_paths);
-                  put_pay = max(self.spot - mean(Asset_path))
-                  call_pay = max(mean(Asset_path-self.spot,0)
-                  putPrice = mean(PutPayoffT)*exp(-r*T)
-                  callPrice = mean(CallPayoffT)*exp(-r*T)   
+          standard_deviation = self.variance ** (0.5)
+          time_steps = 1/365
+          Asset_path = eng.AssetPaths(self.spot, self.mean, standard_deviation, self.expiry, self.number_of_paths);
+          option = input("Mention your choice (call or put) : ")
+          if option == "call"
+            call_pay = max(mean(Asset_path-self.spot,0)
+            callPrice = mean(call_pay)*exp(-self.interest_rate * self.expiry)
+          else
+             put_pay = max(self.spot - mean(Asset_path))
+             putPrice = mean(put_pay)*exp(-self.interest_rate * self.expiry)
+                     
                   
     
     
